@@ -1,4 +1,12 @@
-﻿ /* Faux Console by Chris Heilmann http://wait-till-i.com */
+/* 
+ * Orginal Faux Console by Chris Heilmann http://wait-till-i.com 
+ * at http://icant.co.uk/sandbox/fauxconsole/
+ * 
+ * Forked by Charles SANQUER
+ * https://github.com/csanquer/fauxconsole
+ * 
+ */
+
 if (!window.console) {
     var console = {
         init: function () {
@@ -24,8 +32,11 @@ if (!window.console) {
         show: function () {
             console.d.style.display = 'block';
         },
-        log: function (o) {
-            console.d.innerHTML += '<br/>' + o;
+        log: function () {
+            for (var i = 0; i < arguments.length; i++) 
+            {
+                console.d.innerHTML += '<br/>' + arguments[i];
+            }
             console.show();
         },
         clear: function () {
@@ -49,4 +60,34 @@ if (!window.console) {
         }
     };
     console.addLoadEvent(console.init);
+}
+
+if (!window.console.debug) {
+    console.debug = function () {
+        console.log.apply(this, arguments);
+    };
+}
+
+if (!window.console.info) {
+    console.info = function () {
+        console.log.apply(this, arguments);
+    };
+}
+
+if (!window.console.warn) {
+    console.warn = function () {
+        console.log.apply(this, arguments);
+    };
+}
+
+if (!window.console.error) {
+    console.error = function () {
+        console.log.apply(this, arguments);
+    };
+}
+
+if (!window.console.assert) {
+    console.assert = function () {
+        console.log.apply(this, arguments);
+    };
 }
