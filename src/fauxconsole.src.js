@@ -1,5 +1,5 @@
 /* 
- * Orginal Faux Console by Chris Heilmann http://wait-till-i.com 
+ * Original Faux Console by Chris Heilmann http://wait-till-i.com 
  * at http://icant.co.uk/sandbox/fauxconsole/
  * 
  * Forked by Charles SANQUER
@@ -10,20 +10,29 @@
 if (!window.console) {
     var console = {
         div: null,
+        attached: false,
         init: function () {
-            console.div = document.createElement('div');
-            document.body.appendChild(console.div);
-            var a = document.createElement('a');
-            a.href = 'javascript:console.hide()';
-            a.innerHTML = 'close';
-            console.div.appendChild(a);
-            var a = document.createElement('a');
-            a.href = 'javascript:console.clear();';
-            a.innerHTML = 'clear';
-            console.div.appendChild(a);
-            var id = 'fauxconsole';
-            if (!document.getElementById(id)) {
-                console.div.id = id;
+            if (!document.body) {
+                console.attached = false;
+            }
+            
+            if (!console.div) {
+                console.div = document.createElement('div');
+                
+                var a = document.createElement('a');
+                a.href = 'javascript:console.hide()';
+                a.innerHTML = 'close';
+                console.div.appendChild(a);
+
+                var a = document.createElement('a');
+                a.href = 'javascript:console.clear();';
+                a.innerHTML = 'clear';
+
+                console.div.appendChild(a);
+                var id = 'fauxconsole';
+                if (!document.getElementById(id)) {
+                    console.div.id = id;
+                }
             }
             console.hide();
         },
@@ -31,13 +40,23 @@ if (!window.console) {
             console.div.style.display = 'none';
         },
         show: function () {
+            if (document.body && !console.attached) {
+                document.body.appendChild(console.div);
+                console.attached = true;
+            }
+            
             console.div.style.display = 'block';
         },
         log: function () {
+            if (!console.div) {
+                console.init();
+            }
+            
             for (var i = 0; i < arguments.length; i++) 
             {
                 console.div.innerHTML += '<br/>' + arguments[i];
             }
+            
             console.show();
         },
         clear: function () {
