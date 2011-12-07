@@ -9,38 +9,39 @@
 
 if (!window.console) {
     var console = {
+        div: null,
         init: function () {
-            console.d = document.createElement('div');
-            document.body.appendChild(console.d);
+            console.div = document.createElement('div');
+            document.body.appendChild(console.div);
             var a = document.createElement('a');
             a.href = 'javascript:console.hide()';
             a.innerHTML = 'close';
-            console.d.appendChild(a);
+            console.div.appendChild(a);
             var a = document.createElement('a');
             a.href = 'javascript:console.clear();';
             a.innerHTML = 'clear';
-            console.d.appendChild(a);
+            console.div.appendChild(a);
             var id = 'fauxconsole';
             if (!document.getElementById(id)) {
-                console.d.id = id;
+                console.div.id = id;
             }
             console.hide();
         },
         hide: function () {
-            console.d.style.display = 'none';
+            console.div.style.display = 'none';
         },
         show: function () {
-            console.d.style.display = 'block';
+            console.div.style.display = 'block';
         },
         log: function () {
             for (var i = 0; i < arguments.length; i++) 
             {
-                console.d.innerHTML += '<br/>' + arguments[i];
+                console.div.innerHTML += '<br/>' + arguments[i];
             }
             console.show();
         },
         clear: function () {
-            console.d.parentNode.removeChild(console.d);
+            console.div.parentNode.removeChild(console.div);
             console.init();
             console.show();
         },
