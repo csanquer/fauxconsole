@@ -1,0 +1,4 @@
+/*! fauxconsole originally by by Chris Heilmann (http://wait-till-i.com);
+ * forked by Charles Sanquer (https://github.com/csanquer/fauxconsole);
+ * re-written by Roland Hummel (https://github.com/defaude/fauxconsole).
+ */.fauxconsole{position:absolute;top:0;right:0;width:40em;border:1px solid #aaa;background:#ededed;font-size:.75em;padding:10px}.fauxconsole a{padding:0 .5em}.fauxconsole pre{font-family:monospace}html>body .fauxconsole{position:fixed}
