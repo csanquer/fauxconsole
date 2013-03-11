@@ -55,27 +55,22 @@
         };
     }
     
-    console.log(window.console.debug);
     if (typeof window.console.debug === 'undefined') {
         window.console.debug = window.console.log;
     }
     
-    console.log(window.console.info);
     if (typeof window.console.info === 'undefined') {
         window.console.info = window.console.log;
     }
     
-    console.log(window.console.warn);
     if (typeof window.console.warn === 'undefined') {
         window.console.warn = window.console.log;
     }
     
-    console.log(window.console.error);
     if (typeof window.console.error === 'undefined') {
         window.console.error = window.console.log;
     }
     
-    console.log(window.console.assert);
     if (typeof window.console.assert === 'undefined') {
         window.console.assert = function assert() {
             if (!arguments[0]) {
